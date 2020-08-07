@@ -57,6 +57,16 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _speed = 10;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _speed = 5;
+        }
+
         CalculateMovement();
     }
 
