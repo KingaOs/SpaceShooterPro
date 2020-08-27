@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
 
     void FireLaser()
     {
+        Debug.Log(ammoCount);
         if(ammoCount <= 0)
         {
             _audioSource.clip = _noAmmo;
@@ -195,6 +196,7 @@ public class Player : MonoBehaviour
         _shield = 3;
         _uiManager.UpdateShield(_shield);
     }
+
     IEnumerator ShieldPowerDownRoutine ()
     {
         yield return new WaitForSeconds(5.0f);
@@ -206,6 +208,12 @@ public class Player : MonoBehaviour
     {
         _score += points;
         _uiManager.UpdateScore(_score);
+    }
+
+    public void CollectAmmo()
+    {
+        Debug.Log("1212");
+        ammoCount = 15;
     }
 
 }
