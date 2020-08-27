@@ -158,7 +158,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8297a2bf97dbbba468bd2518d003a876, type: 3}
     m_FontSize: 20
     m_FontStyle: 3
     m_BestFit: 0
@@ -1484,6 +1484,7 @@ MonoBehaviour:
   _rightEngine: {fileID: 251775808}
   _laserSoundClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _shield: 3
+  _noAmmo: {fileID: 8300000, guid: 96056cf9f21a6f543a25cc4fd2e192f4, type: 3}
 --- !u!212 &1886584884
 SpriteRenderer:
   m_ObjectHideFlags: 0

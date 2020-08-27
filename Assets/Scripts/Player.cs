@@ -41,6 +41,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _shield = 3;
 
+    int ammoCount = 15;
+    [SerializeField]
+    AudioClip _noAmmo;
+
     private void Start()
     {
         transform.position = new Vector3(0, 0, 0);
@@ -105,6 +109,13 @@ public class Player : MonoBehaviour
 
     void FireLaser()
     {
+        if(ammoCount <= 0)
+        {
+            _audioSource.clip = _noAmmo;
+            _audioSource.Play();
+            return;
+        }
+        _audioSource.clip = _laserSoundClip;
         _canFire = Time.time + _fireRate;
 
         if(_isTripleShotActive)
@@ -113,6 +124,7 @@ public class Player : MonoBehaviour
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
 
         _audioSource.Play();
+        ammoCount--;
     }
 
 
