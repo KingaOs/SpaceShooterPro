@@ -38,6 +38,9 @@ public class Player : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    [SerializeField]
+    private int _shield = 3;
+
     private void Start()
     {
         transform.position = new Vector3(0, 0, 0);
@@ -66,7 +69,7 @@ public class Player : MonoBehaviour
         {
             _speed = 5;
         }
-
+        
         CalculateMovement();
     }
 
@@ -117,8 +120,14 @@ public class Player : MonoBehaviour
     {
         if(_isShieldActive == true)
         {
-            _isShieldActive = false;
-            _shieldVisualizer.SetActive(false);
+            _shield -= 1;
+            if (_shield == 0)
+            {
+                _isShieldActive = false;
+                _shieldVisualizer.SetActive(false);
+            }
+
+            _uiManager.UpdateShield(_shield);
             return;
         }
         _lives -= 1;
@@ -127,7 +136,7 @@ public class Player : MonoBehaviour
             _leftEngine.SetActive(true);
         else if (_lives == 1)
             _rightEngine.SetActive(true);
-        
+
 
 
         _uiManager.UpdateLives(_lives);
@@ -171,6 +180,8 @@ public class Player : MonoBehaviour
     {
         _isShieldActive = true;
         _shieldVisualizer.SetActive(true);
+        _shield = 3;
+        _uiManager.UpdateShield(_shield);
     }
     IEnumerator ShieldPowerDownRoutine ()
     {

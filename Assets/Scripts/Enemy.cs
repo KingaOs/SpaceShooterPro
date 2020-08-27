@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private GameObject _laserPrefab;
     private float _fireRate = 3.0f;
     private float _canFire= -1f;
+    private bool isDead = false;
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         CalculateMovement();
-        if (Time.time > _canFire)
+        if (Time.time > _canFire && !isDead)
         {
             _fireRate = Random.Range(3.0f, 7.0f);
             _canFire = Time.time + _fireRate;
@@ -54,7 +55,7 @@ public class Enemy : MonoBehaviour
         if(other.tag == "Player")
         {
             _player =other.GetComponent<Player>();
-
+            isDead = true;
             if (_player != null)
                 _player.Damage();
             _anim.SetTrigger("OnEnemyDeath");
@@ -67,6 +68,7 @@ public class Enemy : MonoBehaviour
         }
         else if(other.tag == "Laser")
         {
+            isDead = true;
             Destroy(other.gameObject);
             _speed = 0;
             if (_player != null)

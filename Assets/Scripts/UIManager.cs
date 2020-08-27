@@ -15,6 +15,10 @@ public class UIManager : MonoBehaviour
     private GameObject _GameOverText;
     [SerializeField]
     private Text _restartText;
+    [SerializeField]
+    private Sprite[] _shieldSprites;
+    [SerializeField]
+    private Image _shieldImg;
 
     private GameManager _gameManager;
 
@@ -33,8 +37,20 @@ public class UIManager : MonoBehaviour
     public void UpdateLives(int currentLives)
     {
         _LivesImg.sprite = _liveSprites[currentLives];
-        if (currentLives == 0)
+        if (currentLives <= 0)
             GameOverSequence();
+    }
+
+    public void UpdateShield(int shieldStrength)
+    {
+
+        if (shieldStrength > 0)
+        {
+            _shieldImg.gameObject.SetActive(true);
+            _shieldImg.sprite = _shieldSprites[shieldStrength - 1];
+        }
+        else
+            _shieldImg.gameObject.SetActive(false);
     }
 
     void GameOverSequence()
