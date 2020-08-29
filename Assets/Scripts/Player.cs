@@ -195,6 +195,7 @@ public class Player : MonoBehaviour
         _shieldVisualizer.SetActive(true);
         _shield = 3;
         _uiManager.UpdateShield(_shield);
+        StartCoroutine(ShieldPowerDownRoutine());
     }
 
     IEnumerator ShieldPowerDownRoutine ()
@@ -212,8 +213,19 @@ public class Player : MonoBehaviour
 
     public void CollectAmmo()
     {
-        Debug.Log("1212");
         ammoCount = 15;
+    }
+
+    public void AddHealth()
+    {
+        _lives ++;
+        _uiManager.UpdateLives(_lives);
+
+        if (_lives == 3)
+            _leftEngine.SetActive(false);
+        else if (_lives == 2)
+            _rightEngine.SetActive(false);
+
     }
 
 }

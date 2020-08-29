@@ -38,7 +38,7 @@ public class Spawn_Manager : MonoBehaviour
         while (_stopSpawing == false)
         {
             Vector3 posToSpwan = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            int randomPowerup = Random.Range(0, 4);
+            int randomPowerup = Random.Range(0, 5);
             var neePowerup = Instantiate(powerups[randomPowerup], posToSpwan, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3.0f, 7.0f));
         }
